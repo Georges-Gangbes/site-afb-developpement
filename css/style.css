@@ -239,6 +239,17 @@ section[id], [id].wrap { scroll-margin-top: 84px; }
 .btn__fleche { transition: transform .2s; }
 .btn:hover .btn__fleche { transform: translateX(3px); }
 
+/* Repli « copier l'adresse » à côté des liens mailto */
+.copier-email {
+  display: inline-flex; align-items: center; margin-left: 0.7rem;
+  background: none; border: none; cursor: pointer; padding: 0.2rem 0;
+  font-family: var(--sans); font-size: 0.82rem; font-weight: 600;
+  color: var(--vert-clair); text-decoration: underline; text-underline-offset: 3px;
+  transition: color .2s;
+}
+.copier-email:hover, .copier-email:focus-visible { color: var(--vert-profond); }
+.copier-email--ok { color: var(--or); }
+
 /* Bandeau de chiffres sous le héro */
 .hero__socle {
   position: relative; z-index: 2;

@@ -93,6 +93,49 @@
     });
   }
 
+  /* --- Repli « copier l'adresse » à côté de chaque lien mailto --- */
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (lien) {
+    var adresse = lien.getAttribute("href").replace("mailto:", "").split("?")[0];
+    var bouton = document.createElement("button");
+    bouton.type = "button";
+    bouton.className = "copier-email";
+    bouton.textContent = "Copier l'adresse";
+    bouton.setAttribute("aria-label", "Copier l'adresse e-mail " + adresse);
+
+    function reussite() {
+      bouton.textContent = "Adresse copiée";
+      bouton.classList.add("copier-email--ok");
+      window.setTimeout(function () {
+        bouton.textContent = "Copier l'adresse";
+        bouton.classList.remove("copier-email--ok");
+      }, 1800);
+    }
+
+    function secours() {
+      var zone = document.createElement("textarea");
+      zone.value = adresse;
+      zone.setAttribute("readonly", "");
+      zone.style.position = "absolute";
+      zone.style.left = "-9999px";
+      document.body.appendChild(zone);
+      zone.select();
+      var copie = false;
+      try { copie = document.execCommand("copy"); } catch (err) { copie = false; }
+      document.body.removeChild(zone);
+      if (copie) { reussite(); } else { bouton.textContent = adresse; }
+    }
+
+    bouton.addEventListener("click", function () {
+      if (window.navigator.clipboard && window.navigator.clipboard.writeText) {
+        window.navigator.clipboard.writeText(adresse).then(reussite, secours);
+      } else {
+        secours();
+      }
+    });
+
+    lien.insertAdjacentElement("afterend", bouton);
+  });
+
   /* --- Chiffres animés au défilement --- */
   var chiffres = document.querySelectorAll(".nombre[data-vers]");
   function animerChiffre(el) {
