@@ -292,10 +292,13 @@ section[id], [id].wrap { scroll-margin-top: 84px; }
    ============================================================ */
 .equipementiers {
   border-top: 1px solid var(--ligne); border-bottom: 1px solid var(--ligne);
-  padding-block: 1.8rem; margin-top: clamp(2.5rem, 5vw, 3.5rem);
-  display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 2.5rem;
-  justify-content: space-between;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
 }
+.equipementiers__ligne {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 2.5rem;
+  justify-content: space-between; padding-block: 1.5rem;
+}
+.equipementiers__ligne + .equipementiers__ligne { border-top: 1px dashed var(--ligne); }
 .equipementiers__label {
   font-size: 0.78rem; letter-spacing: 0.04em; color: var(--encre-douce);
   max-width: 26ch; line-height: 1.45;
@@ -305,7 +308,13 @@ section[id], [id].wrap { scroll-margin-top: 84px; }
   font-family: var(--serif); font-size: 1.3rem; color: var(--vert-profond);
   font-weight: 400; letter-spacing: 0.01em; white-space: nowrap;
 }
-@media (max-width: 640px) { .equipementiers { flex-direction: column; align-items: flex-start; } }
+.equipementiers__pays { display: flex; flex-wrap: wrap; gap: 0.9rem 1.8rem; align-items: center; }
+.equipementiers__pays span {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--sans); font-size: 0.92rem; font-weight: 600;
+  color: var(--vert-profond); white-space: nowrap;
+}
+@media (max-width: 640px) { .equipementiers__ligne { flex-direction: column; align-items: flex-start; } }
 
 /* ============================================================
    GRILLE « BENTO » : domaines mis en avant sur l'accueil
