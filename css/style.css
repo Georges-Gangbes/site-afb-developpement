@@ -725,3 +725,65 @@ section[id], [id].wrap { scroll-margin-top: 84px; }
   font-weight: 600; border-radius: 0 0 8px 0;
 }
 .skip-link:focus { left: 0; }
+
+
+/* ============================================================
+   PHOTOS (octobre 2026)
+   ============================================================ */
+/* En-têtes illustrés : la photo passe sous un voile vert pour garder la lisibilité */
+.hero--photo, .page-hero--photo, .bandeau-these--photo {
+  background:
+    linear-gradient(100deg, rgba(15,61,46,.96) 0%, rgba(15,61,46,.88) 42%, rgba(15,61,46,.55) 100%),
+    var(--photo) var(--photo-pos, center) / cover no-repeat,
+    var(--vert-profond);
+}
+.bandeau-these--photo {
+  background:
+    linear-gradient(90deg, rgba(15,61,46,.95) 0%, rgba(15,61,46,.8) 55%, rgba(15,61,46,.5) 100%),
+    var(--photo) center / cover no-repeat, var(--vert-profond);
+}
+@media (max-width: 720px) {
+  .hero--photo, .page-hero--photo {
+    background:
+      linear-gradient(180deg, rgba(15,61,46,.9) 0%, rgba(15,61,46,.93) 100%),
+      var(--photo) var(--photo-pos, center) / cover no-repeat, var(--vert-profond);
+  }
+}
+
+/* Photo dans le corps de page */
+.photo { margin: 2.2rem 0 0; max-width: var(--mesure); }
+.prose > .photo + h2, .prose > .photo + h3 { margin-top: 2.2rem; }
+.photo img {
+  width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+  border-radius: 14px; border: 1px solid var(--ligne);
+  box-shadow: var(--ombre-carte);
+}
+.photo figcaption { margin-top: 0.6rem; font-size: 0.82rem; color: var(--encre-douce); padding-left: 0.9rem; border-left: 2px solid var(--or); }
+.photo--large { max-width: none; margin-top: 0; }
+.photo--large img { aspect-ratio: 21 / 8; }
+@media (max-width: 640px) { .photo--large img { aspect-ratio: 4 / 3; } }
+
+/* Vignettes photo sur les cartes de domaines de l'accueil */
+.domaine--photo { padding-top: 0; }
+.domaine__photo {
+  margin: 0 -1.7rem 0.4rem; width: calc(100% + 3.4rem); max-width: none;
+  aspect-ratio: 16 / 9; object-fit: cover;
+  transition: transform .6s ease;
+}
+.domaine--photo:hover .domaine__photo { transform: scale(1.04); }
+@media (min-width: 900px) {
+  .grille-domaines--bento .domaine--photo:nth-child(1) { padding-top: 0; }
+  .grille-domaines--bento .domaine--photo:nth-child(1) .domaine__photo { margin: 0 -2.2rem 0.6rem; width: calc(100% + 4.4rem); aspect-ratio: 21 / 8; }
+  .grille-domaines--bento .domaine--photo:nth-child(6) { grid-template-columns: 240px auto 1fr auto; padding-top: 1.7rem; }
+  .grille-domaines--bento .domaine--photo:nth-child(6) .domaine__photo {
+    grid-column: 1; grid-row: 1 / span 2; width: calc(100% + 1.7rem); height: calc(100% + 3.4rem);
+    aspect-ratio: auto; margin: -1.7rem 0 -1.7rem -1.7rem;
+  }
+  .grille-domaines--bento .domaine--photo:nth-child(6) .domaine__num { grid-column: 2; }
+  .grille-domaines--bento .domaine--photo:nth-child(6) h3 { grid-column: 2; }
+  .grille-domaines--bento .domaine--photo:nth-child(6) p { grid-column: 3; }
+  .grille-domaines--bento .domaine--photo:nth-child(6) .domaine__lien { grid-column: 4; }
+}
+
+/* Réservation d'un échange dans le bloc final */
+.cta-final__note { font-size: 0.85rem; margin-top: 0.2rem !important; color: rgba(250,248,242,.68) !important; }
